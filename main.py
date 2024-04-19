@@ -2,29 +2,56 @@ import pandas as pd
 
 def analisis_estadistico(data_frame):
     try:
+        df = pd.DataFrame(data_frame, columns=['edad', 'fi'])
+
         #  calcula la frecuencias acumulas
-        data_frame["Fi"] = data_frame["fi"].cumsum()
+        df["Fi"] = df["fi"].cumsum()
 
         # calcula la frecuencias relativas
-        data_frame["ri"] = data_frame["fi"] / data_frame["fi"].sum()
+        df["ri"] = df["fi"] / df["fi"].sum()
       
         # calcula la frecuencias relaativaws acumuladas
-        data_frame["Ri"] = data_frame['ri'].cumsum()
+        df["Ri"] = df['ri'].cumsum()
         
         # calcula la probabilidades en porcentaje
-        data_frame["pi%"] = data_frame["ri"] * 100
+        df["pi%"] =df["ri"] * 100
         
         # calcula la probabilidades de acumuladas en porcentaje
-        data_frame["Pi%"] = data_frame["Ri"] * 100
+        df["Pi%"] =df["Ri"] * 100
         
-        print(data_frame)
+        print(df)
+
+        df.to_csv('edad.csv', index=False)
     
     except Exception as e:
 
-        print(f"Error: la columna '{e.args[0]}' no existe en el data_frame")
+        print(f"Error:{e}")
         return None
 
-data_frame = pd.read_csv("edad.csv", delimiter=";")
-   
+
+
+data_frame = [
+
+            [19,2],
+            [20,2],
+            [21,1],
+            [22,2],
+            [23,2],
+            [24,2],
+            [25,1],
+            [26,2],
+            [27,2],
+            [28,2],
+            [29,1],
+            [30,2],
+            [31,2],
+            [32,2],
+            [33,2],
+            [34,2],  
+            [35,1],
+]
+
+
+
 analisis_estadistico(data_frame)
 
