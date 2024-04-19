@@ -17,18 +17,8 @@ def analisis_estadistico(data_frame):
         # calcula la probabilidades de acumuladas en porcentaje
         data_frame["Pi%"] = data_frame["Ri"] * 100
         
-        estadistica = {
-            'fi': data_frame['fi'].tolist(),
-            'Fi': data_frame['Fi'].tolist(),
-            'ri': data_frame['ri'].tolist(),
-            'Ri': data_frame['Ri'].tolist(),
-            'pi%': data_frame['pi%'].tolist(),
-            'Pi%': data_frame['Ri'].tolist()
-
-        }
-
-        return estadistica
-       
+        print(data_frame)
+    
     except Exception as e:
 
         print(f"Error: la columna '{e.args[0]}' no existe en el data_frame")
@@ -36,12 +26,5 @@ def analisis_estadistico(data_frame):
 
 data_frame = pd.read_csv("edad.csv", delimiter=";")
    
-resultado = analisis_estadistico(data_frame)
+analisis_estadistico(data_frame)
 
-if resultado is not None:
-    print("Resultado:" )
-    for key, value in resultado.items():
-        print(f"{key}:{value}")
-   
-else:
-    print("No funciona")
